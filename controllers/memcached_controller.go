@@ -63,6 +63,6 @@ func (r *MemcachedReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 func (r *MemcachedReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&cachev1alpha1.Memcached{}).
-		Owns(&appsv1.Deployment{})
+		Owns(&appsv1.Deployment{}).
 		Complete(r)
 }
