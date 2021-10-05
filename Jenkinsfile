@@ -1,18 +1,9 @@
-pipeline {
+node {
+  checkout scm
 
-  stages {
-    stage("build enviroment") {
-      node {
-        checkout scm
+  def customImage = docker.build("my-image:${env.BUILD_ID}")
 
-        def customImage = docker.build("my-image:${env.BUILD_ID}")
-
-        customerImage.inside {
-          sh 'make deploy'
-        }
-      }
-    }
-
+  customerImage.inside {
+    sh 'make deploy'
   }
-
 }
