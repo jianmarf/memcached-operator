@@ -1,11 +1,18 @@
 pipeline {
-  node {
-    checkout scm
 
-    def customImage = docker.build("my-image:${env.BUILD_ID}")
+  stages {
+    stage("build enviroment") {
+      node {
+        checkout scm
 
-    customerImage.inside {
-      sh 'make deploy'
+        def customImage = docker.build("my-image:${env.BUILD_ID}")
+
+        customerImage.inside {
+          sh 'make deploy'
+        }
+      }
     }
+
   }
+
 }
